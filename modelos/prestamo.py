@@ -11,7 +11,7 @@ class Prestamo:
 
     @property
     def fecha_devolucion(self) -> date:
-        return date.fromisoformat(self.fecha_prestamo) + timedelta(days=self.dias_plazo)
-    
-    def caducado(self,hoy: date) -> bool:
+        return self.fecha_prestamo + timedelta(days=self.dias_plazo)
+
+    def caducado(self, hoy: date) -> bool:
         return hoy > self.fecha_devolucion

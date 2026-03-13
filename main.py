@@ -1,7 +1,7 @@
 from servicios.gestion_libros import GestionLibros
 from servicios.gestion_usuarios import GestionUsuarios  
 from servicios.gestion_prestamos import GestionPrestamos
-from servicios.factory_notificador import FactoryNotificador
+from servicios.factory_notificador import crear_notificador
 
 def menu():
     print("\n--- Biblioteca Digital ---")
@@ -11,23 +11,27 @@ def menu():
     print("4.Devolver libro")
     print("5.Listar libros")
     print("6.Exportar catalogo JSON")
+    print("7.Exportar catalogo CSV")
     print("0.Salir")
 
 def main():
     gl = GestionLibros()
     gu = GestionUsuarios()
     gp = GestionPrestamos()
-    notificador = FactoryNotificador.crear_notificador("email")
+    notificador = crear_notificador("email")
 
     while True:
         menu()
         opcion = input("Seleccione una opción: ")
-
         if opcion == "1":
             titulo = input("Título del libro: ")
             autor = input("Autor del libro: ")
-            gl.agregar_libro(titulo, autor)
-            print(f"Libro '{titulo}' añadido.")
+            isbn = input("ISBN del libro: ")
+            try:
+                gl.agregar_libro(titulo, autor, isbn)
+                print(f"Libro '{titulo}' añadido.")
+            except ValueError as e:
+                print(e)
         
         elif opcion == "2":
             nombre = input("Nombre del usuario: ")
@@ -38,8 +42,11 @@ def main():
         elif opcion == "3":
             id_usuario = int(input("ID del usuario: "))
             titulo_libro = input("Título del libro: ")
-            prestamo = gp.realizar_prestamo(id_usuario, titulo_libro)
-            notificador.enviar_notificacion(f"Préstamo realizado para '{titulo_libro}'", f"El usuario {id_usuario} ha tomado prestado el libro '{titulo_libro}'.")
+            try:
+                prestamo = gp.realizar_prestamo(gl, id_usuario, titulo_libro)
+                print(f"Préstamo realizado: {prestamo}")
+            except ValueError as e:
+                print(e)
         
         elif opcion == "4":
             id_usuario = int(input("ID del usuario: "))
@@ -54,9 +61,12 @@ def main():
                 print(f"- {libro.titulo} por {libro.autor}")
             
         elif opcion == "6":
-            gl.exportar_catalogo_json("catalogo.json")
+            gl.exportar_json("catalogo.json")
             print("Catálogo exportado a catalogo.json.")
-        
+        elif opcion == "7":
+            gl.exportar_csv("catalogo.csv")
+            print("Catálogo exportado a catalogo.csv.")
+            
         elif opcion == "0":
             print("Saliendo del programa.")
             break
