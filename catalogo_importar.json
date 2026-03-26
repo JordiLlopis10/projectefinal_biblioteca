@@ -1,0 +1,27 @@
+[
+    {
+        "titulo": "tadeo jones",
+        "autor": "jordi",
+        "isbn": "12345"
+    },
+    {
+        "titulo": "El Quijote",
+        "autor": "Miguel de Cervantes",
+        "isbn": "67890"
+    },
+    {
+        "titulo": "Cien años de soledad",
+        "autor": "Gabriel García Márquez",
+        "isbn": "11111"
+    },
+    {
+        "titulo": "1984",
+        "autor": "George Orwell",
+        "isbn": "22222"
+    },
+    {
+        "titulo": "La sombra del viento",
+        "autor": "Carlos Ruiz Zafón",
+        "isbn": "33333"
+    }
+]
