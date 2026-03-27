@@ -58,7 +58,7 @@ class ExportarMixin:
                 writer.writerow([usuario.nombre, usuario.id_usuario])
 
     def importar_usuarios_csv(self, ruta: Path) -> None:
-        from modelos.usuario import Usuario
+        from models.usuario import Usuario
 
         if not hasattr(self, 'usuarios'):
             self.usuarios = {}
@@ -87,7 +87,7 @@ class ExportarMixin:
                 ])
 
     def importar_historico_csv(self, ruta: Path) -> None:
-        from modelos.prestamo import Prestamo
+        from models.prestamo import Prestamo
 
         if not hasattr(self, 'historico'):
             self.historico = []
@@ -113,7 +113,7 @@ class ExportarMixin:
 class ImportarMixins:
 
     def importar_json(self, ruta: Path) -> None:
-        from modelos.libro import Libro
+        from models.libro import Libro
         
         with open(ruta, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -124,11 +124,11 @@ class ImportarMixins:
                         libro = Libro(**item)
                         self.libros[libro.isbn] = libro
                     elif 'id_usuario' in item and hasattr(self, 'usuarios'):
-                        from modelos.usuario import Usuario
+                        from models.usuario import Usuario
                         usuario = Usuario(**item)
                         self.usuarios[usuario.id_usuario] = usuario
                     elif 'fecha_prestamo' in item and hasattr(self, 'historico'):
-                        from modelos.prestamo import Prestamo
+                        from models.prestamo import Prestamo
                         item_copy = item.copy()
                         item_copy['fecha_prestamo'] = date.fromisoformat(item_copy['fecha_prestamo'])
                         if item_copy.get('fecha_devolucion'):
@@ -140,11 +140,11 @@ class ImportarMixins:
                         libro = Libro(**item)
                         self.libros[libro.isbn] = libro
                     elif 'id_usuario' in item and hasattr(self, 'usuarios'):
-                        from modelos.usuario import Usuario
+                        from models.usuario import Usuario
                         usuario = Usuario(**item)
                         self.usuarios[usuario.id_usuario] = usuario
                     elif 'fecha_prestamo' in item and hasattr(self, 'historico'):
-                        from modelos.prestamo import Prestamo
+                        from models.prestamo import Prestamo
                         item_copy = item.copy()
                         item_copy['fecha_prestamo'] = date.fromisoformat(item_copy['fecha_prestamo'])
                         if item_copy.get('fecha_devolucion'):
@@ -153,7 +153,7 @@ class ImportarMixins:
 
 
     def importar_csv(self, ruta: Path) -> None:
-        from modelos.libro import Libro
+        from models.libro import Libro
         
         if not hasattr(self, 'libros'):
             self.libros = {}
@@ -179,7 +179,7 @@ class ImportarMixins:
                     print(f"Error procesando fila {row}: {e}")
 
     def importar_usuarios(self, ruta: Path) -> None:
-        from modelos.usuario import Usuario
+        from models.usuario import Usuario
 
         if not hasattr(self, 'usuarios'):
             self.usuarios = {}
@@ -191,7 +191,7 @@ class ImportarMixins:
                 self.usuarios[usuario.id_usuario] = usuario
 
     def importar_historico(self, ruta: Path) -> None:
-        from modelos.prestamo import Prestamo
+        from models.prestamo import Prestamo
 
         if not hasattr(self, 'historico'):
             self.historico = []

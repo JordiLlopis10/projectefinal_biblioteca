@@ -1,12 +1,12 @@
 import unittest
 from datetime import date, timedelta
-from modelos.libro import Libro
-from modelos.usuario import Usuario
-from modelos.prestamo import Prestamo
-from servicios.gestion_libros import GestionLibros
-from servicios.gestion_usuarios import GestionUsuarios
-from servicios.gestion_prestamos import GestionPrestamos
-from servicios.multas import MultaService
+from models.libro import Libro
+from models.usuario import Usuario
+from models.prestamo import Prestamo
+from services.gestion_libros import GestionLibros
+from services.gestion_usuarios import GestionUsuarios
+from services.gestion_prestamos import GestionPrestamos
+from services.multas import MultaService
 
 
 class TestLibro(unittest.TestCase):

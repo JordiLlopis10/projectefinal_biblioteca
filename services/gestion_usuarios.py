@@ -1,6 +1,6 @@
-from modelos.usuario import Usuario
-from servicios.decoradores import loggear_accion, requiere_campos
-from servicios.mixins import ExportarMixin, ImportarMixins
+from models.usuario import Usuario
+from services.decoradores import loggear_accion, requiere_campos
+from services.mixins import ExportarMixin, ImportarMixins
 
 class GestionUsuarios(ExportarMixin, ImportarMixins):
     def __init__(self):

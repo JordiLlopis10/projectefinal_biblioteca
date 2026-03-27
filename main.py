@@ -1,8 +1,8 @@
-from servicios.gestion_libros import GestionLibros
-from servicios.gestion_usuarios import GestionUsuarios  
-from servicios.gestion_prestamos import GestionPrestamos
-from servicios.factory_notificador import crear_notificador
-from servicios.listar import buscar_libro_por_isbn, mostrar_prestamos_caducados, mostrar_historico
+from services.gestion_libros import GestionLibros
+from services.gestion_usuarios import GestionUsuarios  
+from services.gestion_prestamos import GestionPrestamos
+from services.factory_notificador import crear_notificador
+from services.listar import buscar_libro_por_isbn, mostrar_prestamos_caducados, mostrar_historico
 
 def menu():
     print("\n--- Biblioteca Digital ---")
@@ -110,11 +110,11 @@ def main():
             mostrar_historico(gp)
 
         elif opcion == "11":
-            gl.exportar_json("datos/catalogo_importar.json")
-            print("Catálogo exportado a datos/catalogo_importar.json.")
+            gl.exportar_json("data/catalogo_importar.json")
+            print("Catálogo exportado a data/catalogo_importar.json.")
         elif opcion == "12":
-            gl.exportar_csv("datos/catalogo_importar.csv")
-            print("Catálogo exportado a datos/catalogo_importar.csv.")
+            gl.exportar_csv("data/catalogo_importar.csv")
+            print("Catálogo exportado a data/catalogo_importar.csv.")
 
         elif opcion == "13":
             try:
@@ -136,8 +136,8 @@ def main():
             except ValueError as e:
                 print(f"Error al importar: {e}")
         elif opcion == "15":
-            gu.exportar_usuarios("datos/usuarios.json")
-            print("Usuarios exportados a datos/usuarios.json.")
+            gu.exportar_usuarios("data/usuarios.json")
+            print("Usuarios exportados a data/usuarios.json.")
         elif opcion == "16":
             try:
                 ruta = input("Ingrese la ruta del archivo JSON de usuarios: ")
@@ -148,8 +148,8 @@ def main():
             except ValueError as e:
                 print(f"Error al importar usuarios: {e}")
         elif opcion == "17":
-            gu.exportar_usuarios_csv("datos/usuarios.csv")
-            print("Usuarios exportados a datos/usuarios.csv.")
+            gu.exportar_usuarios_csv("data/usuarios.csv")
+            print("Usuarios exportados a data/usuarios.csv.")
         elif opcion == "18":
             try:
                 ruta = input("Ingrese la ruta del archivo CSV de usuarios: ")
@@ -160,8 +160,8 @@ def main():
             except ValueError as e:
                 print(f"Error al importar usuarios CSV: {e}")
         elif opcion == "19":
-            gp.exportar_historico("datos/historico_prestamos.json")
-            print("Histórico de préstamos exportado a datos/historico_prestamos.json.")
+            gp.exportar_historico("data/historico_prestamos.json")
+            print("Histórico de préstamos exportado a data/historico_prestamos.json.")
         elif opcion == "20":
             try:
                 ruta = input("Ingrese la ruta del archivo JSON de historico: ")
@@ -172,8 +172,8 @@ def main():
             except ValueError as e:
                 print(f"Error al importar historico: {e}")
         elif opcion == "21":
-            gp.exportar_historico_csv("datos/historico_prestamos.csv")
-            print("Histórico de préstamos exportado a datos/historico_prestamos.csv.")
+            gp.exportar_historico_csv("data/historico_prestamos.csv")
+            print("Histórico de préstamos exportado a data/historico_prestamos.csv.")
         elif opcion == "22":
             try:
                 ruta = input("Ingrese la ruta del archivo CSV de historico: ")

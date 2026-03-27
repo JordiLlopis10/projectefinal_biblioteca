@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
-from modelos.prestamo import Prestamo
-from servicios.gestion_libros import GestionLibros
-from servicios.decoradores import loggear_accion
-from servicios.mixins import ExportarMixin, ImportarMixins
-from servicios.multas import MultaService
+from models.prestamo import Prestamo
+from services.gestion_libros import GestionLibros
+from services.decoradores import loggear_accion
+from services.mixins import ExportarMixin, ImportarMixins
+from services.multas import MultaService
 
 
 class GestionPrestamos(ExportarMixin, ImportarMixins):

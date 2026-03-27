@@ -28,5 +28,10 @@
         "titulo": "El diario de Greg",
         "autor": "Greg",
         "isbn": "56789"
+    },
+    {
+        "titulo": "Indiana Jones",
+        "autor": "Jones",
+        "isbn": "66666"
     }
 ]

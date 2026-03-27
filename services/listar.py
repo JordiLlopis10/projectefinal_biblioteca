@@ -1,6 +1,6 @@
 from datetime import date
-from servicios.gestion_prestamos import GestionPrestamos
-from servicios.gestion_libros import GestionLibros
+from services.gestion_prestamos import GestionPrestamos
+from services.gestion_libros import GestionLibros
 
 def buscar_libro_por_isbn(gl: GestionLibros) -> None:
     isbn = input("Ingrese el ISBN del libro a buscar: ")

@@ -1,8 +1,8 @@
 from __future__ import annotations
-from modelos.libro import Libro
+from models.libro import Libro
 from typing import Iterable
-from servicios.mixins import ExportarMixin, ImportarMixins
-from servicios.decoradores import loggear_accion, requiere_campos
+from services.mixins import ExportarMixin, ImportarMixins
+from services.decoradores import loggear_accion, requiere_campos
 
 class GestionLibros(ExportarMixin, ImportarMixins):
     def __init__(self):
