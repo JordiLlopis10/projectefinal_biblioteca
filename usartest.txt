@@ -1,0 +1,3 @@
+Ejecutar estas linias
+cd c:\Users\Jordi\Desktop\projectefinal_biblioteca
+python -m pytest tests/test_unitarios.py -v
