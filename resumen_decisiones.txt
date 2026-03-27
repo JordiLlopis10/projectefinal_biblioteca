@@ -2,9 +2,7 @@ Decisiones de diseño en el proyecto Biblioteca Digital
 
 1. GestionLibros, GestionUsuarios y GestionPrestamos
 - Separación de responsabilidades (SRP): cada clase gestiona una entidad distinta.
-- GestionLibros se encarga de CRUD básico de libros.
-- GestionUsuarios se encarga de CRUD básico de usuarios.
-- GestionPrestamos gestiona préstamos activos, caducados y histórico.
+
 
 2. Patrón Singleton para MultaService
 - Se ha utilizado el patrón Singleton en MultaService para centralizar el registro de multas.
@@ -14,14 +12,12 @@ Decisiones de diseño en el proyecto Biblioteca Digital
 
 3. Patrón Factory para notificaciones
 - Se implementó un factory simple en servicios/factory_notificador.py.
-- Permite intercambiar fácilmente entre notificaciones por Email o SMS (y más en el futuro).
 - Se aísla la creación de la instancia de notificador y se desacopla de la lógica de negocio.
 
 4. Mixins de export/import
 - Exportar/importar se implementó con ExportarMixin / ImportarMixins.
 - Permite compartir la misma lógica entre GestionLibros, GestionUsuarios y GestionPrestamos.
 - Se admiten JSON y CSV (libros, usuarios e histórico).
-- El mixin contiene reglas de serialización, incluida la gestión de fechas ISO para loans.
 
 5. Interfaz de usuario (main.py)
 - Menú claro en consola con opciones ordenadas.
