@@ -1,3 +1,4 @@
+# Este módulo contiene funciones para listar información relevante, como buscar libros por ISBN, mostrar préstamos caducados y listar el histórico de préstamos. Estas funciones interactúan con las clases de gestión de libros y préstamos para obtener los datos necesarios.
 from datetime import date
 from services.gestion_prestamos import GestionPrestamos
 from services.gestion_libros import GestionLibros

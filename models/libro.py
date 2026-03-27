@@ -1,3 +1,4 @@
+# Este módulo contiene la clase Libro, que representa un libro en la biblioteca. La clase incluye atributos para el título, el autor y el ISBN del libro. También proporciona un método para representar el libro como una cadena de texto, facilitando su visualización en la aplicación.
 from __future__ import annotations
 from dataclasses import dataclass
 

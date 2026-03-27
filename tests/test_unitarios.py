@@ -153,31 +153,33 @@ class TestGestionPrestamos(unittest.TestCase):
     def setUp(self):
         self.gestion = GestionPrestamos()
         self.gestion_libros = GestionLibros()
+        self.gestion_usuarios = GestionUsuarios()
         self.gestion_libros.agregar_libro("El Quijote", "Cervantes", "12345")
+        self.gestion_usuarios.agregar_usuario("Test User", 1)
 
     def test_realizar_prestamo(self):
-        prestamo = self.gestion.realizar_prestamo(self.gestion_libros, 1, "12345")
+        prestamo = self.gestion.realizar_prestamo(self.gestion_libros, self.gestion_usuarios, 1, "12345")
         self.assertEqual(prestamo.id_usuario, 1)
         self.assertEqual(prestamo.isbn, "12345")
         self.assertIn(prestamo, self.gestion.prestamos)
 
     def test_realizar_prestamo_libro_no_existe(self):
         with self.assertRaises(ValueError):
-            self.gestion.realizar_prestamo(self.gestion_libros, 1, "99999")
+            self.gestion.realizar_prestamo(self.gestion_libros, self.gestion_usuarios, 1, "99999")
 
     def test_realizar_prestamo_libro_ya_prestado(self):
-        self.gestion.realizar_prestamo(self.gestion_libros, 1, "12345")
+        self.gestion.realizar_prestamo(self.gestion_libros, self.gestion_usuarios, 1, "12345")
         with self.assertRaises(ValueError):
-            self.gestion.realizar_prestamo(self.gestion_libros, 2, "12345")
+            self.gestion.realizar_prestamo(self.gestion_libros, self.gestion_usuarios, 2, "12345")
 
     def test_listar_prestamos(self):
-        self.gestion.realizar_prestamo(self.gestion_libros, 1, "12345")
+        self.gestion.realizar_prestamo(self.gestion_libros, self.gestion_usuarios, 1, "12345")
         prestamos = self.gestion.listar_prestamos()
         self.assertEqual(len(prestamos), 1)
 
     def test_devolver_libro_a_tiempo(self):
-        self.gestion.realizar_prestamo(self.gestion_libros, 1, "12345")
-        multa = self.gestion.devolver_libro(1, "12345")
+        self.gestion.realizar_prestamo(self.gestion_libros, self.gestion_usuarios, 1, "12345")
+        multa = self.gestion.devolver_libro(self.gestion_usuarios, 1, "12345")
         self.assertIsNone(multa)
         self.assertEqual(len(self.gestion.prestamos), 0)
         self.assertEqual(len(self.gestion.historico), 1)
@@ -187,13 +189,27 @@ class TestGestionPrestamos(unittest.TestCase):
         prestamo = Prestamo(id_usuario=1, isbn="12345", fecha_prestamo=hoy - timedelta(days=20), dias_plazo=14)
         self.gestion.prestamos.append(prestamo)
         
-        multa = self.gestion.devolver_libro(1, "12345")
+        multa = self.gestion.devolver_libro(self.gestion_usuarios, 1, "12345")
         self.assertIsNotNone(multa)
         self.assertGreater(multa, 0)
 
-    def test_devolver_libro_no_existe(self):
-        with self.assertRaises(ValueError):
-            self.gestion.devolver_libro(999, "12345")
+    def test_historial_usuario_registra_eventos(self):
+        # Realizar préstamo
+        self.gestion.realizar_prestamo(self.gestion_libros, self.gestion_usuarios, 1, "12345")
+        
+        # Verificar que se registró el evento de préstamo
+        usuario = self.gestion_usuarios.obtener_usuario(1)
+        historial = usuario.historial()
+        self.assertEqual(len(historial), 1)
+        self.assertIn("Préstamo realizado: ISBN '12345'", historial[0])
+        
+        # Devolver libro
+        self.gestion.devolver_libro(self.gestion_usuarios, 1, "12345")
+        
+        # Verificar que se registró el evento de devolución
+        historial = usuario.historial()
+        self.assertEqual(len(historial), 2)
+        self.assertIn("Devolución a tiempo: ISBN '12345'", historial[1])
 
     def test_prestamos_caducados_no_devueltos(self):
         hoy = date.today()

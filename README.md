@@ -23,11 +23,11 @@ Este es un sistema de gestión completo para bibliotecas que permite administrar
 - Permite agregar nuevos libros al catálogo
 - Requiere: Título, Autor, ISBN
 
-**6. Buscar libro por ISBN**
+**7. Buscar libro por ISBN**
 - Busca un libro específico usando su ISBN
 - Muestra toda la información del libro
 
-**7. Listar libros**
+**8. Listar libros**
 - Muestra todos los libros disponibles en el catálogo
 
 ### Gestión de Usuarios
@@ -39,49 +39,54 @@ Este es un sistema de gestión completo para bibliotecas que permite administrar
 **3. Listar usuarios**
 - Muestra todos los usuarios registrados
 
+**4. Ver historial de usuario**
+- Muestra el historial completo de actividades de un usuario
+- Requiere: ID de usuario
+- Incluye préstamos, devoluciones y otros eventos
+
 ### Gestión de Préstamos
 
-**4. Realizar préstamo**
+**5. Realizar préstamo**
 - Presta un libro a un usuario
 - Requiere: ID de usuario, ISBN del libro
 - Verifica que el libro esté disponible
 - Establece un plazo de 14 días
 
-**5. Devolver libro**
+**7. Devolver libro**
 - Registra la devolución de un libro
 - Calcula automáticamente multas por retraso (1.5€ por día)
 - Mueve el préstamo al histórico
 
-**8. Listar préstamos activos**
+**9. Listar préstamos activos**
 - Muestra todos los préstamos que aún no han sido devueltos
 
-**9. Listar préstamos caducados no devueltos**
+**10. Listar préstamos caducados no devueltos**
 - Muestra préstamos vencidos que requieren atención
 - Incluye días de retraso
 
-**10. Listar histórico de préstamos**
+**11. Listar histórico de préstamos**
 - Muestra todos los préstamos completados
 - Incluye información de multas si aplica
 
 ### Importación/Exportación de Datos
 
 **Exportar datos:**
-- 11. Exportar catálogo a JSON
-- 12. Exportar catálogo a CSV
-- 15. Exportar usuarios a JSON
-- 17. Exportar usuarios a CSV
-- 19. Exportar histórico de préstamos a JSON
-- 21. Exportar histórico de préstamos a CSV
+- 12. Exportar catálogo a JSON
+- 13. Exportar catálogo a CSV
+- 16. Exportar usuarios a JSON
+- 18. Exportar usuarios a CSV
+- 20. Exportar histórico de préstamos a JSON
+- 22. Exportar histórico de préstamos a CSV
 
 Los archivos se guardan automáticamente en la carpeta `data/`
 
 **Importar datos:**
-- 13. Importar catálogo desde JSON
-- 14. Importar catálogo desde CSV
-- 16. Importar usuarios desde JSON
-- 18. Importar usuarios desde CSV
-- 20. Importar histórico desde JSON
-- 22. Importar histórico desde CSV
+- 14. Importar catálogo desde JSON
+- 15. Importar catálogo desde CSV
+- 17. Importar usuarios desde JSON
+- 19. Importar usuarios desde CSV
+- 21. Importar histórico desde JSON
+- 23. Importar histórico desde CSV
 
 Para importar, ingresa la ruta completa del archivo cuando se solicite.
 

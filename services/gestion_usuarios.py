@@ -1,3 +1,4 @@
+# Este módulo contiene la clase GestionUsuarios, que se encarga de gestionar las operaciones relacionadas con los usuarios de la biblioteca, como agregar, eliminar y listar usuarios. También incluye funcionalidades para exportar e importar datos de usuarios en formatos JSON y CSV.
 from models.usuario import Usuario
 from services.decoradores import loggear_accion, requiere_campos
 from services.mixins import ExportarMixin, ImportarMixins

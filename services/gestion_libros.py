@@ -1,3 +1,4 @@
+# Este módulo contiene la clase GestionLibros, que se encarga de gestionar las operaciones relacionadas con los libros de la biblioteca, como agregar, eliminar, buscar y listar libros. También incluye funcionalidades para exportar e importar datos de libros en formatos JSON y CSV.
 from __future__ import annotations
 from models.libro import Libro
 from typing import Iterable

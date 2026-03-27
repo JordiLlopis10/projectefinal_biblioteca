@@ -1,3 +1,4 @@
+# Este módulo contiene la clase Usuario, que representa a un usuario de la biblioteca. La clase incluye atributos para el nombre del usuario, su ID y un historial de eventos relacionados con sus interacciones con la biblioteca. También proporciona métodos para registrar eventos y obtener el historial completo de interacciones.
 from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List

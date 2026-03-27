@@ -1,3 +1,4 @@
+# Este módulo contiene mixins para exportar e importar datos en formatos JSON y CSV, facilitando la persistencia y recuperación de información en la aplicación.
 import json, csv
 from pathlib import Path
 from dataclasses import asdict

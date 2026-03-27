@@ -1,3 +1,4 @@
+# Este módulo contiene la clase Prestamo, que representa un préstamo de un libro en la biblioteca. La clase incluye atributos para el ID del usuario, el ISBN del libro, la fecha del préstamo, el plazo de devolución, la fecha de devolución (si ya se ha devuelto) y la multa (si corresponde). También proporciona métodos para calcular la fecha de devolución esperada y verificar si el préstamo está caducado.
 from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import Optional

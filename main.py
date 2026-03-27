@@ -9,25 +9,26 @@ def menu():
     print("1.Añadir libro")
     print("2.Añadir usuario")
     print("3.Listar usuarios")
-    print("4.Realizar préstamo")
-    print("5.Devolver libro")
-    print("6.Buscar libro por ISBN")
-    print("7.Listar libros")
-    print("8.Listar préstamos activos")
-    print("9.Listar préstamos caducados no devueltos")
-    print("10.Listar histórico de préstamos")
-    print("11.Exportar catalogo JSON")
-    print("12.Exportar catalogo CSV")
-    print("13.Importar catalogo JSON")
-    print("14.Importar catalogo CSV")
-    print("15.Exportar usuarios JSON")
-    print("16.Importar usuarios JSON")
-    print("17.Exportar usuarios CSV")
-    print("18.Importar usuarios CSV")
-    print("19.Exportar historico de prestamos JSON")
-    print("20.Importar historico de prestamos JSON")
-    print("21.Exportar historico de prestamos CSV")
-    print("22.Importar historico de prestamos CSV")
+    print("4.Ver historial de usuario")
+    print("5.Realizar préstamo")
+    print("6.Devolver libro")
+    print("7.Buscar libro por ISBN")
+    print("8.Listar libros")
+    print("9.Listar préstamos activos")
+    print("10.Listar préstamos caducados no devueltos")
+    print("11.Listar histórico de préstamos")
+    print("12.Exportar catalogo JSON")
+    print("13.Exportar catalogo CSV")
+    print("14.Importar catalogo JSON")
+    print("15.Importar catalogo CSV")
+    print("16.Exportar usuarios JSON")
+    print("17.Importar usuarios JSON")
+    print("18.Exportar usuarios CSV")
+    print("19.Importar usuarios CSV")
+    print("20.Exportar historico de prestamos JSON")
+    print("21.Importar historico de prestamos JSON")
+    print("22.Exportar historico de prestamos CSV")
+    print("23.Importar historico de prestamos CSV")
     print("0.Salir")
 
 def main():
@@ -64,18 +65,31 @@ def main():
                 print(f"- {usuario.nombre} (ID {usuario.id_usuario})")
         elif opcion == "4":
             id_usuario = int(input("ID del usuario: "))
-            isbn = input("ISBN del libro: ")
             try:
-                prestamo = gp.realizar_prestamo(gl, id_usuario, isbn)
-                print(f"Préstamo realizado: {prestamo}")
+                usuario = gu.obtener_usuario(id_usuario)
+                historial = usuario.historial()
+                print(f"\nHistorial de {usuario.nombre} (ID: {usuario.id_usuario}):")
+                if historial:
+                    for evento in historial:
+                        print(f"- {evento}")
+                else:
+                    print("No hay eventos registrados para este usuario.")
             except ValueError as e:
                 print(e)
-
         elif opcion == "5":
             id_usuario = int(input("ID del usuario: "))
             isbn = input("ISBN del libro: ")
             try:
-                multa = gp.devolver_libro(id_usuario, isbn)
+                prestamo = gp.realizar_prestamo(gl, gu, id_usuario, isbn)
+                print(f"Préstamo realizado: {prestamo}")
+            except ValueError as e:
+                print(e)
+
+        elif opcion == "6":
+            id_usuario = int(input("ID del usuario: "))
+            isbn = input("ISBN del libro: ")
+            try:
+                multa = gp.devolver_libro(gu, id_usuario, isbn)
                 if multa is not None:
                     print(f"Libro devuelto con multa de {multa:.2f} € por retraso.")
                     notificador.enviar_notificacion(
@@ -90,33 +104,33 @@ def main():
                     )
             except ValueError as e:
                 print(e)
-        elif opcion == "6":
-            buscar_libro_por_isbn(gl)
         elif opcion == "7":
+            buscar_libro_por_isbn(gl)
+        elif opcion == "8":
             libros = gl.listar_libros()
             print("\nLibros disponibles:")
             for libro in libros:
                 print(f"- {libro.titulo} por {libro.autor} con ISBN {libro.isbn}")
-        elif opcion == "8":
+        elif opcion == "9":
             prestamos_activos = gp.listar_prestamos()
             print("\nPréstamos activos:")
             for prestamo in prestamos_activos:
                 print(f"- Usuario ID: {prestamo.id_usuario}, ISBN: {prestamo.isbn}, Fecha: {prestamo.fecha_prestamo}")
 
-        elif opcion == "9":
+        elif opcion == "10":
             mostrar_prestamos_caducados(gp)
 
-        elif opcion == "10":
+        elif opcion == "11":
             mostrar_historico(gp)
 
-        elif opcion == "11":
+        elif opcion == "12":
             gl.exportar_json("data/catalogo_importar.json")
             print("Catálogo exportado a data/catalogo_importar.json.")
-        elif opcion == "12":
+        elif opcion == "13":
             gl.exportar_csv("data/catalogo_importar.csv")
             print("Catálogo exportado a data/catalogo_importar.csv.")
 
-        elif opcion == "13":
+        elif opcion == "14":
             try:
                 ruta = input("Ingrese la ruta del archivo JSON: ")
                 gl.importar_json(ruta)
@@ -126,7 +140,7 @@ def main():
             except ValueError as e:
                 print(f"Error al importar: {e}")
 
-        elif opcion == "14":
+        elif opcion == "15":
             try:
                 ruta = input("Ingrese la ruta del archivo CSV: ")
                 gl.importar_csv(ruta)
@@ -135,10 +149,10 @@ def main():
                 print("Archivo no encontrado.")
             except ValueError as e:
                 print(f"Error al importar: {e}")
-        elif opcion == "15":
+        elif opcion == "16":
             gu.exportar_usuarios("data/usuarios.json")
             print("Usuarios exportados a data/usuarios.json.")
-        elif opcion == "16":
+        elif opcion == "17":
             try:
                 ruta = input("Ingrese la ruta del archivo JSON de usuarios: ")
                 gu.importar_usuarios(ruta)
@@ -147,10 +161,10 @@ def main():
                 print("Archivo no encontrado.")
             except ValueError as e:
                 print(f"Error al importar usuarios: {e}")
-        elif opcion == "17":
+        elif opcion == "18":
             gu.exportar_usuarios_csv("data/usuarios.csv")
             print("Usuarios exportados a data/usuarios.csv.")
-        elif opcion == "18":
+        elif opcion == "19":
             try:
                 ruta = input("Ingrese la ruta del archivo CSV de usuarios: ")
                 gu.importar_usuarios_csv(ruta)
@@ -159,10 +173,10 @@ def main():
                 print("Archivo no encontrado.")
             except ValueError as e:
                 print(f"Error al importar usuarios CSV: {e}")
-        elif opcion == "19":
+        elif opcion == "20":
             gp.exportar_historico("data/historico_prestamos.json")
             print("Histórico de préstamos exportado a data/historico_prestamos.json.")
-        elif opcion == "20":
+        elif opcion == "21":
             try:
                 ruta = input("Ingrese la ruta del archivo JSON de historico: ")
                 gp.importar_historico(ruta)
@@ -171,10 +185,10 @@ def main():
                 print("Archivo no encontrado.")
             except ValueError as e:
                 print(f"Error al importar historico: {e}")
-        elif opcion == "21":
+        elif opcion == "22":
             gp.exportar_historico_csv("data/historico_prestamos.csv")
             print("Histórico de préstamos exportado a data/historico_prestamos.csv.")
-        elif opcion == "22":
+        elif opcion == "23":
             try:
                 ruta = input("Ingrese la ruta del archivo CSV de historico: ")
                 gp.importar_historico_csv(ruta)

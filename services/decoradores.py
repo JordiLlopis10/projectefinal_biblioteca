@@ -1,3 +1,4 @@
+# Este módulo contiene decoradores para validar la presencia de campos requeridos en las funciones y para loggear las acciones realizadas en la aplicación, facilitando la depuración y el seguimiento de las operaciones.
 import inspect
 from functools import wraps
 
