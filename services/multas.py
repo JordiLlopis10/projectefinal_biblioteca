@@ -1,4 +1,4 @@
-#Patron de diseño Singleton para gestionar multas de usuarios por retrasos en devoluciones
+#Patron de diseño Singleton para gestionar multas de usuarios por retrasos en devoluciones, porque solo necesitamos una instancia de este servicio para mantener un registro centralizado de todas las multas asignadas a los usuarios. Esto asegura que la información sobre las multas sea consistente y fácilmente accesible desde cualquier parte de la aplicación.
 from __future__ import annotations
 from datetime import date
 
