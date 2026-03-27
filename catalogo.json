@@ -23,10 +23,5 @@
         "titulo": "La sombra del viento",
         "autor": "Carlos Ruiz Zafón",
         "isbn": "33333"
-    },
-    {
-        "titulo": "El diario de Greg",
-        "autor": "Greg",
-        "isbn": "56789"
     }
 ]

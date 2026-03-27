@@ -3,10 +3,11 @@ from datetime import date
 from modelos.prestamo import Prestamo
 from servicios.gestion_libros import GestionLibros
 from servicios.decoradores import loggear_accion
+from servicios.mixins import ExportarMixin, ImportarMixins
 from servicios.multas import MultaService
 
 
-class GestionPrestamos:
+class GestionPrestamos(ExportarMixin, ImportarMixins):
 
     def __init__(self):
         self.prestamos: list[Prestamo] = []
@@ -52,6 +53,11 @@ class GestionPrestamos:
     def listar_historico(self) -> list[Prestamo]:
         return self.historico
 
+    def exportar_historico(self, ruta):
+        return super().exportar_historico(ruta)
+
+    def importar_historico(self, ruta):
+        return super().importar_historico(ruta)
 
     @loggear_accion
     def devolver_libro(self, id_usuario: int, isbn: str) -> float | None:

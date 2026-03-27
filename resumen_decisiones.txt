@@ -1,0 +1,42 @@
+Decisiones de diseño en el proyecto Biblioteca Digital
+
+1. GestionLibros, GestionUsuarios y GestionPrestamos
+- Separación de responsabilidades (SRP): cada clase gestiona una entidad distinta.
+- GestionLibros se encarga de CRUD básico de libros.
+- GestionUsuarios se encarga de CRUD básico de usuarios.
+- GestionPrestamos gestiona préstamos activos, caducados y histórico.
+
+2. Patrón Singleton para MultaService
+- Se ha utilizado el patrón Singleton en MultaService para centralizar el registro de multas.
+- Esto asegura que todas las referencias a MultaService compartan la misma tabla de multas.
+- Evita inconsistencias if se generan múltiples instancias con datos separados.
+- No se usó un Factory ni un Repository aquí porque la funcionalidad es simple, centrada en estado global único.
+
+3. Patrón Factory para notificaciones
+- Se implementó un factory simple en servicios/factory_notificador.py.
+- Permite intercambiar fácilmente entre notificaciones por Email o SMS (y más en el futuro).
+- Se aísla la creación de la instancia de notificador y se desacopla de la lógica de negocio.
+
+4. Mixins de export/import
+- Exportar/importar se implementó con ExportarMixin / ImportarMixins.
+- Permite compartir la misma lógica entre GestionLibros, GestionUsuarios y GestionPrestamos.
+- Se admiten JSON y CSV (libros, usuarios e histórico).
+- El mixin contiene reglas de serialización, incluida la gestión de fechas ISO para loans.
+
+5. Interfaz de usuario (main.py)
+- Menú claro en consola con opciones ordenadas.
+- Separación de acciones de negocio y presentación.
+- Opciones extendidas para exportar/importar (catálogo, usuarios, histórico).
+
+6. Arquitectura y claridad
+- Uso de dataclasses para modelos (Libro, Usuario, Prestamo) con serialización sencilla.
+- Añadida carpeta servicios con responsabilidades bien delimitadas.
+- El método de devolución comprueba caducidad y calcula multas correctamente.
+
+Conclusión
+- El proyecto prioriza claridad, extensibilidad y facilidad de mantenimiento.
+- Se usaron patrones de diseño relevantes para cada caso:
+  - Singleton para datos globales compartidos (MultaService).
+  - Factory para creación flexible de notificadores.
+  - Mixins para reutilización cross-class de import/export.
+  - SRP y modularidad para evitar acoplamientos fuertes.

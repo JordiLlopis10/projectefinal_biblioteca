@@ -1,0 +1,34 @@
+[
+    {
+        "id_usuario": 1,
+        "isbn": "12345",
+        "fecha_prestamo": "2026-03-01",
+        "dias_plazo": 14,
+        "fecha_devolucion": "2026-03-20",
+        "multa": 9.0
+    },
+    {
+        "id_usuario": 2,
+        "isbn": "67890",
+        "fecha_prestamo": "2026-03-10",
+        "dias_plazo": 14,
+        "fecha_devolucion": "2026-03-20",
+        "multa": null
+    },
+    {
+        "id_usuario": 1,
+        "isbn": "12345",
+        "fecha_prestamo": "2026-03-26",
+        "dias_plazo": 14,
+        "fecha_devolucion": "2026-03-26",
+        "multa": null
+    },
+    {
+        "id_usuario": 2,
+        "isbn": "33333",
+        "fecha_prestamo": "2026-03-26",
+        "dias_plazo": 14,
+        "fecha_devolucion": "2026-03-26",
+        "multa": null
+    }
+]

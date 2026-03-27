@@ -1,3 +1,4 @@
+# He usado el patrón de diseño Factory para crear instancias de notificadores sin acoplar el código a clases específicas. Esto permite una mayor flexibilidad y escalabilidad en el sistema de notificaciones.
 from abc import ABC, abstractmethod
 
 class Notificador(ABC):

@@ -1,0 +1,27 @@
+[
+    {
+        "nombre": "Laura",
+        "id_usuario": 3,
+        "_historial": []
+    },
+    {
+        "nombre": "Nando",
+        "id_usuario": 4,
+        "_historial": []
+    },
+    {
+        "nombre": "Paquito",
+        "id_usuario": 5,
+        "_historial": []
+    },
+    {
+        "nombre": "Jordi",
+        "id_usuario": 1,
+        "_historial": []
+    },
+    {
+        "nombre": "Pepe",
+        "id_usuario": 2,
+        "_historial": []
+    }
+]

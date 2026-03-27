@@ -1,7 +1,8 @@
 from modelos.usuario import Usuario
 from servicios.decoradores import loggear_accion, requiere_campos
+from servicios.mixins import ExportarMixin, ImportarMixins
 
-class GestionUsuarios:
+class GestionUsuarios(ExportarMixin, ImportarMixins):
     def __init__(self):
         self.usuarios = {}
 
@@ -28,3 +29,9 @@ class GestionUsuarios:
 
     def listar_usuarios(self) -> list[Usuario]:
         return list(self.usuarios.values())
+
+    def exportar_usuarios(self, ruta):
+        return super().exportar_usuarios(ruta)
+
+    def importar_usuarios(self, ruta):
+        return super().importar_usuarios(ruta)
