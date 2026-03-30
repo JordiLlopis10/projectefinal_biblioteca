@@ -5,8 +5,10 @@ from dataclasses import asdict
 from datetime import date
 
 class ExportarMixin:
+    """Mixin que proporciona funcionalidad de exportación en JSON y CSV."""
 
     def exportar_json(self, ruta: Path) -> None:
+        """Exporta datos de libros, usuarios o histórico a archivo JSON."""
         if hasattr(self, "libros"):
             data = [asdict(libro) for libro in self.libros.values()]
         else:
@@ -16,6 +18,7 @@ class ExportarMixin:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
     def exportar_csv(self, ruta: Path) -> None:
+        """Exporta datos de libros a archivo CSV."""
         with open(ruta, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             if hasattr(self, "libros") and self.libros:
@@ -27,6 +30,7 @@ class ExportarMixin:
                 writer.writerow(self.__dict__.values())
 
     def exportar_usuarios(self, ruta: Path) -> None:
+        """Exporta usuarios a archivo JSON."""
         if not hasattr(self, 'usuarios'):
             raise AttributeError('El objeto no tiene usuarios para exportar.')
 
@@ -35,6 +39,7 @@ class ExportarMixin:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
     def exportar_historico(self, ruta: Path) -> None:
+        """Exporta histórico de préstamos a archivo JSON con fechas serializadas."""
         if not hasattr(self, 'historico'):
             raise AttributeError('El objeto no tiene historico de prestamos para exportar.')
 

@@ -10,4 +10,5 @@ class Libro:
     isbn: str
 
     def __str__(self) -> str:
+        """Retorna representación textual del libro con título, autor e ISBN."""
         return f"{self.titulo} - {self.autor} (ISBN: {self.isbn})"

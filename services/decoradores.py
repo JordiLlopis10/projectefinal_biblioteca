@@ -4,6 +4,7 @@ from functools import wraps
 
 
 def requiere_campos(*campos):
+    """Decorador que valida que los campos especificados no estén vacíos."""
     def decorador(funcion):
 
         @wraps(funcion)
@@ -23,6 +24,7 @@ def requiere_campos(*campos):
     return decorador
 
 def loggear_accion(funcion):
+    """Decorador que registra (loggea) la ejecución de una función con sus argumentos."""
     @wraps(funcion)
     def envoltura(*args, **kwargs):
         resultado = funcion(*args, **kwargs)

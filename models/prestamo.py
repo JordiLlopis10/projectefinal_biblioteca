@@ -15,9 +15,11 @@ class Prestamo:
 
     @property
     def fecha_devolucion_esperada(self) -> date:
+        """Calcula la fecha límite de devolución del préstamo."""
         return self.fecha_prestamo + timedelta(days=self.dias_plazo)
 
     def caducado(self, hoy: date) -> bool:
+        """Verifica si el préstamo está vencido y aún no devuelto."""
         if self.fecha_devolucion:
             return False  # Ya devuelto
         return hoy > self.fecha_devolucion_esperada

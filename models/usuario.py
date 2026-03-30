@@ -10,10 +10,13 @@ class Usuario:
     _historial: List[str] = field(default_factory=list, repr=False)
 
     def __str__(self) -> str:
+        """Retorna representación textual del usuario."""
         return f"{self.nombre} (ID: {self.id_usuario})"
 
     def registrar_evento(self, evento: str) -> None:
+        """Añade un evento al historial del usuario."""
         self._historial.append(evento)
 
     def historial(self) -> List[str]:
+        """Retorna copia del historial de eventos del usuario."""
         return list(self._historial)

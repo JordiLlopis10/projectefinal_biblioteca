@@ -6,15 +6,18 @@ class MultaService:
     _instance = None
 
     def __new__(cls, *args, **kwargs):
+        """Implementa patrón Singleton: retorna siempre la misma instancia."""
         if cls._instance is None:
             cls._instance = super().__new__(cls)
         return cls._instance
 
     def __init__(self):
+        """Inicializa el diccionario de multas solo la primera vez."""
         if not hasattr(self, 'multas'):
             self.multas: dict[int, list[dict]] = {}
 
     def asignar_multa(self, id_usuario: int, isbn: str, dias_retraso: int, tasa: float = 1.0) -> float:
+        """Calcula y registra una multa por retraso en devolución."""
         monto = round(dias_retraso * tasa, 2)
         registro = {
             'fecha': date.today().isoformat(),
@@ -26,6 +29,7 @@ class MultaService:
         return monto
 
     def obtener_multas(self, id_usuario: int | None = None):
+        """Obtiene multas de un usuario específico o todas si no se especifica usuario."""
         if id_usuario is None:
             return self.multas
         return self.multas.get(id_usuario, [])
