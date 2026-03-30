@@ -3,7 +3,7 @@
 
 class SimpleValidationMeta(type):
     """
-    Metaclase simple que valida campos básicos automáticamente.
+    Metaclase que valida campos básicos automáticamente.
 
     Validaciones básicas:
     - Campos requeridos no pueden estar vacíos (strings) o ser <= 0 (números)

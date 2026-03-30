@@ -26,6 +26,7 @@ Decisiones de diseño en el proyecto Biblioteca Digital
 
 6. Arquitectura y claridad
 - Uso de dataclasses para modelos (Libro, Usuario, Prestamo) con serialización sencilla.
+- Implementación de metaclases para validación automática en modelos (Libro, Usuario, Prestamo) con SimpleValidationMeta  en `models/simple_metaclase.py`.
 - Añadida carpeta servicios con responsabilidades bien delimitadas.
 - El método de devolución comprueba caducidad y calcula multas correctamente.
 
