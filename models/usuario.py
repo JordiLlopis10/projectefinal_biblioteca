@@ -1,13 +1,18 @@
 # Este módulo contiene la clase Usuario, que representa a un usuario de la biblioteca. La clase incluye atributos para el nombre del usuario, su ID y un historial de eventos relacionados con sus interacciones con la biblioteca. También proporciona métodos para registrar eventos y obtener el historial completo de interacciones.
 from __future__ import annotations
-from dataclasses import dataclass, field
 from typing import List
+from .simple_metaclase import SimpleValidationMeta
 
-@dataclass
-class Usuario:
-    nombre: str
-    id_usuario: int
-    _historial: List[str] = field(default_factory=list, repr=False)
+class Usuario(metaclass=SimpleValidationMeta):
+    _required_fields = ['nombre', 'id_usuario']
+
+    def __init__(self, nombre: str, id_usuario: int):
+        self.nombre = nombre
+        self.id_usuario = id_usuario
+        self._historial: List[str] = []
+
+        # Validación automática
+        self._validar_campos_basicos()
 
     def __str__(self) -> str:
         """Retorna representación textual del usuario."""
